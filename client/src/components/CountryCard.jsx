@@ -42,21 +42,24 @@ const Text = styled.div`
   }
 `;
 
-const CountryCard = () => {
+const CountryCard = ({ country }) => {
+  const { name, population, region, capital, flag } = country;
+  console.log(flag);
+
   return (
     <CardContainer>
-      <Image src="/1280px-Flag_of_Germany.svg" />
+      <Image src={flag} alt="flag" />
       <Text>
-        <h2>Germany</h2>
+        <h2>{name}</h2>
         <p>
-          <span>Population:</span> 81,770,900
+          <span>Population: </span> {population}
         </p>
         <p>
-          <span>Region:</span>Europe
+          <span>Region:</span>
+          {region}
         </p>
-
         <p>
-          <span>Capital:</span> Berlin
+          <span>Capital:</span> {capital}
         </p>
       </Text>
     </CardContainer>
