@@ -8,12 +8,15 @@ import { useQuery, gql } from "@apollo/client";
 export const COUNTRIES = gql`
   query getCountries {
     countriesForHome {
-      name
+      name {
+        common
+      }
       population
-      region
       capital
-      flag
-      id
+      flags {
+        svg
+      }
+      region
     }
   }
 `;
@@ -34,7 +37,7 @@ const Countries = () => {
       <Filtering />
       <CountryGrid>
         {data?.countriesForHome?.map((country) => (
-          <CountryCard key={country.id} country={country} />
+          <CountryCard key={country.name.common} country={country} />
         ))}
       </CountryGrid>
     </Layout>

@@ -8,17 +8,24 @@ const typeDefs = gql`
 
   "Country definition for the home page"
   type Country {
-    id: ID!
     "The countries name"
-    name: String!
+    name: Name!
     "The countries population"
     population: Int
     "The countries region"
     region: String
     "The countries capital"
-    capital: String
+    capital: [String]
     "The countries flag"
-    flag: String
+    flags: Flags
+  }
+
+  type Name {
+    common: String!
+  }
+
+  type Flags {
+    svg: String!
   }
 `;
 module.exports = typeDefs;

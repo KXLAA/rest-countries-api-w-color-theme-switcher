@@ -43,14 +43,13 @@ const Text = styled.div`
 `;
 
 const CountryCard = ({ country }) => {
-  const { name, population, region, capital, flag } = country;
-  console.log(flag);
+  const { name, population, region, capital, flags } = country;
 
   return (
     <CardContainer>
-      <Image src={flag} alt="flag" />
+      <Image src={flags.svg} alt={`${name.common} flag`} />
       <Text>
-        <h2>{name}</h2>
+        <h2>{name.common}</h2>
         <p>
           <span>Population: </span> {population}
         </p>
@@ -59,7 +58,7 @@ const CountryCard = ({ country }) => {
           {region}
         </p>
         <p>
-          <span>Capital:</span> {capital}
+          <span>Capital:</span> {capital?.map((sing) => sing)}
         </p>
       </Text>
     </CardContainer>
