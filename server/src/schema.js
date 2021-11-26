@@ -26,6 +26,7 @@ const typeDefs = gql`
 
   type Flags {
     svg: String!
+    png: String!
   }
 `;
 module.exports = typeDefs;

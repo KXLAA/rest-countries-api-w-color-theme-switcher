@@ -9,6 +9,7 @@ const CardContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
+  aspect-ratio: 16 / 9;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 `;
@@ -47,7 +48,7 @@ const CountryCard = ({ country }) => {
 
   return (
     <CardContainer>
-      <Image src={flags.svg} alt={`${name.common} flag`} />
+      <Image src={flags.png} alt={`${name.common} flag`} />
       <Text>
         <h2>{name.common}</h2>
         <p>

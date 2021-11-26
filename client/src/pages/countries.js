@@ -15,6 +15,7 @@ export const COUNTRIES = gql`
       capital
       flags {
         svg
+        png
       }
       region
     }
