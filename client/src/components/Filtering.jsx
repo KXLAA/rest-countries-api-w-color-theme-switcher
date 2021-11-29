@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Menu, MenuList, MenuButton, MenuItem } from "@reach/menu-button";
@@ -44,24 +45,72 @@ const DropdownBtn = styled.button`
   }
 `;
 
-function Dropdown() {
+function Dropdown({ countries, setFoundCountries }) {
+  const dropdownFilter = (country) => {
+    if (country === "Africa") {
+      setFoundCountries(
+        countries?.filter((country) => country.region === "Africa")
+      );
+    } else if (country === "Americas") {
+      setFoundCountries(
+        countries?.filter((country) => country.region === "Americas")
+      );
+    } else if (country === "Asia") {
+      setFoundCountries(
+        countries?.filter((country) => country.region === "Asia")
+      );
+    } else if (country === "Europe") {
+      setFoundCountries(
+        countries?.filter((country) => country.region === "Europe")
+      );
+    } else if (country === "Oceania") {
+      setFoundCountries(
+        countries?.filter((country) => country.region === "Oceania")
+      );
+    } else if (country === "All") {
+      setFoundCountries(countries);
+    } else {
+      setFoundCountries(countries);
+    }
+  };
+
   return (
     <Menu>
       <MenuButton as={DropdownBtn}>
         Filter by Region <span aria-hidden>▾</span>
       </MenuButton>
       <MenuList className="slide-down">
-        <MenuItem>Africa</MenuItem>
-        <MenuItem>America</MenuItem>
-        <MenuItem>Asia </MenuItem>
-        <MenuItem>Europe </MenuItem>
-        <MenuItem>Oceania </MenuItem>
+        <MenuItem onSelect={() => dropdownFilter("Africa")}>Africa</MenuItem>
+        <MenuItem onSelect={() => dropdownFilter("Americas")}>
+          Americas
+        </MenuItem>
+        <MenuItem onSelect={() => dropdownFilter("Asia")}>Asia </MenuItem>
+        <MenuItem onSelect={() => dropdownFilter("Europe")}>Europe </MenuItem>
+        <MenuItem onSelect={() => dropdownFilter("Oceania")}>Oceania </MenuItem>
+        <MenuItem onSelect={() => dropdownFilter("All")}>All </MenuItem>
       </MenuList>
     </Menu>
   );
 }
 
-const Filtering = () => {
+const Filtering = ({ countries, setFoundCountries }) => {
+  const [search, setSearch] = useState(""); //search input state
+
+  const filterCountries = (event) => {
+    const keyword = event.target.value;
+    if (keyword !== "") {
+      const filteredCountries = countries?.filter((apiCountry) =>
+        apiCountry.name.common.toLowerCase().includes(keyword.toLowerCase())
+      );
+      setFoundCountries(filteredCountries);
+    } else {
+      setFoundCountries(countries);
+    }
+    setSearch(keyword);
+  };
+
+  console.log(search);
+
   return (
     <FilteringContainer>
       <SearchContainer>
@@ -74,9 +123,14 @@ const Filtering = () => {
             color: "#848484",
           }}
         />
-        <SearchBar />
+        <SearchBar
+          type="search"
+          value={search}
+          onChange={filterCountries}
+          placeholder="Filter"
+        />
       </SearchContainer>
-      <Dropdown />
+      <Dropdown countries={countries} setFoundCountries={setFoundCountries} />
     </FilteringContainer>
   );
 };
