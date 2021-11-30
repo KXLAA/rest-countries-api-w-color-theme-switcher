@@ -36,6 +36,8 @@ const Countries = () => {
     setCountries(data?.countriesForHome);
   }, [countries]);
 
+  console.log(data);
+
   console.log(countries);
 
   if (loading) return "Loading...";
