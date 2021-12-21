@@ -4,6 +4,8 @@ const typeDefs = gql`
   type Query {
     "Get countries array for homepage grid"
     countriesForHome: [Country!]!
+    countriesByRegion(region: String!): [Country!]!
+    countriesByName(name: String!): [Country!]!
   }
 
   "Country definition for the home page"

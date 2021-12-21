@@ -5,6 +5,23 @@ import Filtering from "../components/Filtering";
 import CountryCard from "../components/CountryCard";
 import { useQuery, gql } from "@apollo/client";
 
+export const GET_COUNTRIES_BY_REGION = gql`
+  query ($region: String!) {
+    countriesByRegion(region: $region) {
+      name {
+        common
+      }
+      population
+      region
+      capital
+      flags {
+        svg
+        png
+      }
+    }
+  }
+`;
+
 export const COUNTRIES = gql`
   query getCountries {
     countriesForHome {
@@ -28,25 +45,23 @@ export const COUNTRIES = gql`
  */
 
 const Countries = () => {
-  const { loading, error, data } = useQuery(COUNTRIES);
-  const [countries, setCountries] = useState([]);
-  const [foundCountries, setFoundCountries] = useState([]);
+  const [filterRegion, setFilterRegion] = useState("all");
 
-  useEffect(() => {
-    setCountries(data?.countriesForHome);
-  }, [countries]);
-
-  console.log(data);
-
-  console.log(countries);
+  const { loading, error, data } = useQuery(GET_COUNTRIES_BY_REGION, {
+    variables: { region: filterRegion },
+  });
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
+
   return (
     <Layout>
-      <Filtering countries={countries} setFoundCountries={setFoundCountries} />
+      <Filtering
+        filterRegion={filterRegion}
+        setFilterRegion={setFilterRegion}
+      />
       <CountryGrid>
-        {foundCountries?.map((country) => (
+        {data?.countriesByRegion?.map((country) => (
           <CountryCard key={country.name.common} country={country} />
         ))}
       </CountryGrid>

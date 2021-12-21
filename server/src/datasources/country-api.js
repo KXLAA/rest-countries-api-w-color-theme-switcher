@@ -9,6 +9,14 @@ class CountryAPI extends RESTDataSource {
   getCountriesForHome() {
     return this.get("all");
   }
+
+  getCountriesByRegion(region) {
+    return this.get(`region/${region}`);
+  }
+
+  getCountriesByName(name) {
+    return this.get(`name/${name}`);
+  }
 }
 
 module.exports = CountryAPI;
