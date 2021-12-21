@@ -6,8 +6,17 @@ class CountryAPI extends RESTDataSource {
     this.baseURL = "https://restcountries.com/v3.1/";
   }
 
-  getCountriesForHome() {
+  getAllCountries() {
     return this.get("all");
+  }
+
+  getCountriesForHome(region, name) {
+    if (region) {
+      return this.get(`region/${region}`);
+    }
+    if (name) {
+      return this.get(`name/${name}`);
+    }
   }
 
   getCountriesByRegion(region) {
@@ -16,6 +25,10 @@ class CountryAPI extends RESTDataSource {
 
   getCountriesByName(name) {
     return this.get(`name/${name}`);
+  }
+
+  getCountryByName(name) {
+    return this.get(`name/${name}?fullText=true`);
   }
 }
 

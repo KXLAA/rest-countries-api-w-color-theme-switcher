@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 
 /** importing our pages */
 import Countries from "./countries";
+import Country from "./country";
 
 const theme = {
   font: "sans-serif",
@@ -17,6 +18,7 @@ export default function Pages() {
       <ThemeProvider theme={theme}>
         <Routes>
           <Route path="/" element={<Countries />} />
+          <Route path="/country/:name" element={<Country />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

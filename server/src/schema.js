@@ -3,9 +3,11 @@ const { gql } = require("apollo-server");
 const typeDefs = gql`
   type Query {
     "Get countries array for homepage grid"
-    countriesForHome: [Country!]!
+    allCountries: [Country!]!
+    countriesForHome(region: String, name: String): [Country!]!
     countriesByRegion(region: String!): [Country!]!
     countriesByName(name: String!): [Country!]!
+    oneCountryByName(name: String!): [Country]!
   }
 
   "Country definition for the home page"

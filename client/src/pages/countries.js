@@ -22,23 +22,6 @@ export const GET_COUNTRIES_BY_REGION = gql`
   }
 `;
 
-export const COUNTRIES = gql`
-  query getCountries {
-    countriesForHome {
-      name {
-        common
-      }
-      population
-      capital
-      flags {
-        svg
-        png
-      }
-      region
-    }
-  }
-`;
-
 /**
  * Countries Page is the app's home page.
  * Display a grid of countries fetched with useQuery with the COUNTRIES query

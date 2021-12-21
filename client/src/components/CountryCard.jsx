@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const CardContainer = styled.div`
   display: flex;
@@ -48,7 +49,9 @@ const CountryCard = ({ country }) => {
 
   return (
     <CardContainer>
-      <Image src={flags.png} alt={`${name.common} flag`} />
+      <Link to={`/country/${name.common}`}>
+        <Image src={flags.png} alt={`${name.common} flag`} />
+      </Link>
       <Text>
         <h2>{name.common}</h2>
         <p>
