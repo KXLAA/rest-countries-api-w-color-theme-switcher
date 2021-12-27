@@ -13,24 +13,38 @@ const typeDefs = gql`
   "Country definition for the home page"
   type Country {
     "The countries name"
-    name: Name!
+    name: String!
+    "The countries Native Name"
+    nativeName: String
     "The countries population"
     population: Int
     "The countries region"
     region: String
+    "The countries sub-region"
+    subregion: String
     "The countries capital"
-    capital: [String]
+    capital: String
     "The countries flag"
     flags: Flags
-  }
-
-  type Name {
-    common: String!
+    "The top level domain"
+    topLevelDomain: [String]
+    "Currency"
+    currencies: [Currency]
+    "Currency"
+    languages: [Languages]
   }
 
   type Flags {
     svg: String!
     png: String!
+  }
+
+  type Currency {
+    name: String!
+  }
+
+  type Languages {
+    name: String!
   }
 `;
 module.exports = typeDefs;
