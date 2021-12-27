@@ -65,6 +65,7 @@ const Detail = styled.ul`
 const BorderContainer = styled.div`
   display: flex;
   gap: 10px;
+  align-items: center;
 
   span {
     font-weight: 600;
