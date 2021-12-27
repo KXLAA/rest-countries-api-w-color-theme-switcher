@@ -8,6 +8,7 @@ const typeDefs = gql`
     countriesByRegion(region: String!): [Country!]!
     countriesByName(name: String!): [Country!]!
     oneCountryByName(name: String!): [Country]!
+    countriesByCode(alpha3Code: String!): Country!
   }
 
   "Country definition for the home page"
@@ -32,6 +33,10 @@ const typeDefs = gql`
     currencies: [Currency]
     "Currency"
     languages: [Languages]
+    "Border Countries"
+    borders: [String]
+    "Alpha Code"
+    alpha3Code: String
   }
 
   type Flags {

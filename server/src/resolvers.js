@@ -29,6 +29,10 @@ const resolvers = {
     oneCountryByName: (_, { name }, { dataSources }) => {
       return dataSources.countryAPI.getCountryByName(name);
     },
+
+    countriesByCode: (_, { alpha3Code }, { dataSources }) => {
+      return dataSources.countryAPI.getCountriesByCode(alpha3Code);
+    },
   },
 };
 

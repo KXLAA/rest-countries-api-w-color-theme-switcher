@@ -30,6 +30,10 @@ class CountryAPI extends RESTDataSource {
   getCountryByName(name) {
     return this.get(`name/${name}?fullText=true`);
   }
+
+  getCountriesByCode(alpha3Code) {
+    return this.get(`alpha/${alpha3Code}`);
+  }
 }
 
 module.exports = CountryAPI;
