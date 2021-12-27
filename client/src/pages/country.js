@@ -6,16 +6,24 @@ import CountryPage from "../components/country/CountryPage";
 export const GET_COUNTRIES_BY_NAME = gql`
   query ($name: String!) {
     oneCountryByName(name: $name) {
-      region
-      name {
-        common
-      }
+      name
+      nativeName
       population
+      region
+      subregion
       capital
       flags {
         svg
         png
       }
+      topLevelDomain
+      currencies {
+        name
+      }
+      languages {
+        name
+      }
+      borders
     }
   }
 `;

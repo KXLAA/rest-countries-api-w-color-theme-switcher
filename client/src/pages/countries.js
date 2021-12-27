@@ -1,16 +1,14 @@
-import { React, useState, useEffect } from "react";
-import Layout from "../components/Layout";
-import CountryGrid from "../components/CountryGrid";
-import Filtering from "../components/Filtering";
-import CountryCard from "../components/CountryCard";
+import { React, useState } from "react";
+import Layout from "../components/common/Layout";
+import CountryGrid from "../components/countries/CountryGrid";
+import Filtering from "../components/countries/Filtering";
+import CountryCard from "../components/countries/CountryCard";
 import { useQuery, gql } from "@apollo/client";
 
 export const GET_COUNTRIES_BY_REGION = gql`
   query ($region: String!) {
     countriesByRegion(region: $region) {
-      name {
-        common
-      }
+      name
       population
       region
       capital
@@ -22,17 +20,14 @@ export const GET_COUNTRIES_BY_REGION = gql`
   }
 `;
 
-/**
- * Countries Page is the app's home page.
- * Display a grid of countries fetched with useQuery with the COUNTRIES query
- */
-
 const Countries = () => {
   const [filterRegion, setFilterRegion] = useState("all");
 
   const { loading, error, data } = useQuery(GET_COUNTRIES_BY_REGION, {
     variables: { region: filterRegion },
   });
+
+  console.log(data);
 
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
@@ -45,7 +40,7 @@ const Countries = () => {
       />
       <CountryGrid>
         {data?.countriesByRegion?.map((country) => (
-          <CountryCard key={country.name.common} country={country} />
+          <CountryCard key={country.name} country={country} />
         ))}
       </CountryGrid>
     </Layout>

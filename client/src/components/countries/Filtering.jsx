@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";
 import SearchBar from "./SearchBar";
-import { useQuery, gql } from "@apollo/client";
 
 const FilteringContainer = styled.div`
   display: flex;
